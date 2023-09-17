@@ -1,19 +1,19 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({
-  name: "user",
-  orderBy: {
-      name: "ASC",
-      id: "DESC",
-  },
+    name: "user",
+    orderBy: {
+        email: "ASC",
+        id: "DESC",
+    },
 })
 export class UserEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
+    @PrimaryGeneratedColumn()
+    id: number;
 
-  @Column()
-  email: string;
+    @Column()
+    email: string;
 
-  @Column()
-  password: string;
+    @Column()
+    password: string;
 }
