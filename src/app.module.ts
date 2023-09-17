@@ -11,16 +11,22 @@ import { UserEntity } from './user/repositories/user.entity';
 import Joi from 'joi';
 import { join } from 'path';
 
+
+
 @Module({
     imports: [
         ConfigModule.forRoot({
-            envFilePath: 'environments/.env',
+            envFilePath: ['environments/.env'], // p^remier ficheir environement
+            isGlobal: true,
+        }),
+        ConfigModule.forRoot({
+            envFilePath: [`environments/.env.${process.env.NODE_ENV}`], // fichier pour les databases
             isGlobal: true,
         }),
         TypeOrmModule.forRootAsync({
             useFactory: () => ({
                 type: 'mysql',
-                host: process.env.DB_HOST,
+                host: process.env.DB_HOST != null ? process.env.DB_HOST : "127.0.0.1",
                 port: process.env.DB_PORT != null ? +process.env.DB_PORT : 3306,
                 username: process.env.DB_USERNAME,
                 password: process.env.DB_PASSWORD,
