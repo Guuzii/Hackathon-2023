@@ -8,10 +8,6 @@ import { LoggerMiddleware } from './common/middleware/logger/logger.middleware';
 import { UserModule } from './user/user.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { UserEntity } from './user/repositories/user.entity';
-import Joi from 'joi';
-import { join } from 'path';
-
-
 
 @Module({
     imports: [
