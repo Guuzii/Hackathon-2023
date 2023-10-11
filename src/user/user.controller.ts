@@ -104,6 +104,6 @@ export class UserController {
     @Req() req: any,
     @UploadedFile() file: Express.Multer.File,
   ): Promise<UserGetDto> {
-    return await this.userService.updateUserAvatarUrl(file.path, req.user.sub);
+    return await this.userService.updateUserAvatarUrl(file.path, req.user.userId);
   }
 }

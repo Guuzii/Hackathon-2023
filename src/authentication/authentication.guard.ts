@@ -9,6 +9,7 @@ import { Request } from 'express';
 import { Reflector } from '@nestjs/core';
 
 import { IS_PUBLIC_KEY } from '../common/decorator/allow-anonymous.decorator';
+import { JwtPayloadDto } from './dto/protected/jwt-payload-auth.dto';
 
 @Injectable()
 export class AuthenticationGuard implements CanActivate {
@@ -32,7 +33,7 @@ export class AuthenticationGuard implements CanActivate {
     if (!token) throw new UnauthorizedException();
 
     try {
-      const payload = await this.jwtService.verifyAsync(token, {
+      const payload: JwtPayloadDto = await this.jwtService.verifyAsync(token, {
         secret: process.env.JWT_SECRET_AUTH,
       });
 
